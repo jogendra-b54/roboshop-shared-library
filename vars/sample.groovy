@@ -5,4 +5,11 @@ def info(message) {
 }
 
 // calling the function info
-info("ValueOfMessage")
+info("Hello")
+
+
+def call(){
+    echo "I am the default function"
+}
+
+sample
