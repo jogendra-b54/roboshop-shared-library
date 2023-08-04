@@ -1,7 +1,7 @@
 def lintchecks()
 {   
     sh '''
-             echo Installing JSLint for ${COMPONENT}
+             echo Installing AngularLint for ${COMPONENT}
              echo lint checks completed for ${COMPONENT}
     '''
 
@@ -20,9 +20,9 @@ def call(COMPONENT) {
               
             }
         }
-             stage('Code Compile'){
+             stage('Code Quality Analysis'){
                    steps{
-                      //sh "npm install"
+                      sh "echo Code Quality Analysis is in place"
                 }
              }
          }                                                      // End of the stages      
