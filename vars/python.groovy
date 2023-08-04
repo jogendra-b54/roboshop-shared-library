@@ -30,7 +30,3 @@ def call(COMPONENT) {
          }                                                      // End of the stages      
     } 
 }
-
-//   script {
-//                         sample.info("CATALOGUE")
-//                     }    
