@@ -13,7 +13,7 @@ def sonarchecks()
 {   
     sh '''
              echo Sonar Checks In Progress
-             sonar-scanner -Dsonar.sources=.  -Dsonar.login=0137a6f92286deae048a73f8f632c18530ae98ca -Dsonar.host.url=http://172.31.21.58:9000 -Dsonar.projectKey=${COMPONENT}
+             sonar-scanner -Dsonar.sources=.  -Dsonar.login=0137a6f92286deae048a73f8f632c18530ae98ca -Dsonar.host.url=http://54.236.6.163:9000 -Dsonar.projectKey=${COMPONENT}
              echo Sonar Checks are completed
     '''
 
