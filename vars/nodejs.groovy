@@ -21,6 +21,8 @@ def sonarchecks()
 
 }
 def call(COMPONENT){
+    pipeline{
+         agent { label 'WS' }
           stages{                                                // Start of the stages
             stage('Lint Checks'){
                   steps{
@@ -48,7 +50,8 @@ def call(COMPONENT){
                             sh "echo Testing in Progress"
                         }
                 }
-             }
+            }
                                                               // End of the stages      
-    } 
+      }      
+}
 
