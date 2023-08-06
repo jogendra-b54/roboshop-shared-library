@@ -48,6 +48,6 @@ def sonarchecks()
                         }
                 }
              }
-         }                                                      // End of the stages      
-    } 
+                                                              // End of the stages      
+     
 
