@@ -35,6 +35,7 @@ def call(COMPONENT){
              stage('Sonar checks'){
                    steps{
                         script{
+                            env.ARGS="-Dsonar.sources=."
                             common.sonarchecks()
                         }
                 }
