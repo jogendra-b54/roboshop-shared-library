@@ -15,7 +15,7 @@ def sonarchecks()
              echo Sonar Checks In Progress
              sonar-scanner -Dsonar.sources=.  -Dsonar.login=0137a6f92286deae048a73f8f632c18530ae98ca -Dsonar.host.url=http://54.90.171.239:9000 -Dsonar.projectKey=${COMPONENT}
              curl https://gitlab.com/thecloudcareers/opensource/-/raw/master/lab-tools/sonar-scanner/quality-gate > sonar-quality-gate.sh
-             sonar-quality-gate.sh admin password 172.31.21.58 ${COMPONENT}
+             sonar-quality-gate.sh ${SONARCRED_USR} ${SONARCRED_PSW} ${SONAR_URL} ${COMPONENT}
              echo Sonar Checks are completed
     '''
 
@@ -23,6 +23,10 @@ def sonarchecks()
 def call(COMPONENT){
     pipeline{
          agent { label 'WS' }
+         environment {
+             SONARCRED =  credentials('SONARCRED')
+             SONAR_URL = "172.31.21.58"
+         }
           stages{                                                // Start of the stages
             stage('Lint Checks'){
                   steps{
