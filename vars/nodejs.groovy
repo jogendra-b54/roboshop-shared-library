@@ -20,6 +20,7 @@ def sonarchecks()
     '''
 
 }
+def call(COMPONENT){
           stages{                                                // Start of the stages
             stage('Lint Checks'){
                   steps{
@@ -49,5 +50,5 @@ def sonarchecks()
                 }
              }
                                                               // End of the stages      
-     
+    } 
 
