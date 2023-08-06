@@ -13,6 +13,10 @@ def call(COMPONENT) {
 
     pipeline{
          agent { label 'WS' }
+           environment {
+             SONARCRED =  credentials('SONARCRED')
+             SONAR_URL = "172.31.21.58"
+         }
          stages{                                                // Start of the stages
             stage('Lint Checks'){
                   steps{
@@ -22,9 +26,11 @@ def call(COMPONENT) {
               
             }
         }
-             stage('Code Compile'){
+             stage('Sonar Checks'){
                    steps{
-                      sh "npm install"
+                        script{
+                            common.sonarchecks()
+                        }
                 }
              }
          }                                                      // End of the stages      
