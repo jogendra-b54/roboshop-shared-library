@@ -67,9 +67,11 @@ def call(COMPONENT){
             stage('Prepare Artifacts'){
                 when { expression { env.TAG_NAME !=null } }
                 steps{
-                    sh "echo preparing the Artifacts for ${COMPONENT}"
-                    sh "npm install"
-                    sh "zip ${COMPONENT}-${TAG_NAME}.zip node_modules server.js"
+                    sh '''
+                        echo preparing the Artifacts for ${COMPONENT}
+                        npm install
+                        zip ${COMPONENT}-${TAG_NAME}.zip node_modules server.js
+                    '''
                 }
             }
             stage('Upload Artifacts'){
