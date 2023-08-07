@@ -77,7 +77,7 @@ def call(COMPONENT){
                 steps{
                     sh '''
                         echo uploading ${COMPONENT} Artifacts to Nexus
-                        curl -v -u ${NEXUS_USR}:${NEXUS_PSW} --upload-file ${COMPONENT}-${TAG_NAME}.zip http://172.31.95.24:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip
+                        curl -L -v -u ${NEXUS_USR}:${NEXUS_PSW} --upload-file ${COMPONENT}-${TAG_NAME}.zip http://172.31.95.24:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip
                         echo Uploading ${COMPONENT} Artifacts to Nexus is Completed
                      '''
                 }
