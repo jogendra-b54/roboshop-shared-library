@@ -69,7 +69,7 @@ def call(COMPONENT){
                 steps{
                     sh "echo preparing the Artifacts for ${COMPONENT}"
                     sh "npm install"
-                    sh "zip ${COMPONENT}.zip node_modules server.js"
+                    sh "zip ${COMPONENT}-${TAG_NAME}.zip node_modules server.js"
                 }
             }
             stage('Upload Artifacts'){
