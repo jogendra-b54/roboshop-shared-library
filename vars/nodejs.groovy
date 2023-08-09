@@ -68,7 +68,7 @@ def call(COMPONENT){
                 when { expression { env.TAG_NAME !=null } }
                 steps{
                     script{
-                        env.UPLOAD_STATUS=sh (returnStdout:true , script : "url http://${NEXUSURL}:8081/service/rest/repository/browse/${COMPONENT}/ | grep ${COMPONENT}-${TAG_NAME}" )
+                        env.UPLOAD_STATUS=sh (returnStdout:true , script : "curl http://${NEXUSURL}:8081/service/rest/repository/browse/${COMPONENT}/ | grep ${COMPONENT}-${TAG_NAME}" )
                     }
                     sh "Upload status is  ${UPLOAD_STATUS}"
                 }
