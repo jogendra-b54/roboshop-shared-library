@@ -72,7 +72,7 @@ def call(COMPONENT){
                         env.UPLOAD_STATUS=sh(returnStdout: true , script: 'curl -s -L http://172.31.95.24:8081/service/rest/repository/browse/${COMPONENT}/ | grep ${COMPONENT}-${TAG_NAME}.zip || true' )
                         print UPLOAD_STATUS
                     }
-                    sh "echo Upload status is  ${UPLOAD_STATUS}"
+                    //sh "echo Upload status is  ${UPLOAD_STATUS}"
                 }
             }
             stage('Prepare Artifacts'){
