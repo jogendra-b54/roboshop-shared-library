@@ -17,6 +17,7 @@ def call(COMPONENT){
              SONARCRED =  credentials('SONARCRED')
              NEXUS =  credentials('NEXUS')
              SONAR_URL = "172.31.21.58"
+             NEXUSURL= "172.31.95.24"
          }
           stages{                                                // Start of the stages
             stage('Lint Checks'){
@@ -68,7 +69,7 @@ def call(COMPONENT){
                 when { expression { env.TAG_NAME !=null } }
                 steps{
                     script{
-                        env.UPLOAD_STATUS=sh (returnStdout:true , script : "curl http://${NEXUSURL}:8081/service/rest/repository/browse/${COMPONENT}/ | grep ${COMPONENT}-${TAG_NAME}" )
+                        env.UPLOAD_STATUS=sh (returnStdout: true , script : "curl http://${NEXUSURL}:8081/service/rest/repository/browse/${COMPONENT}/ | grep ${COMPONENT}-${TAG_NAME}" )
                     }
                     sh "Upload status is  ${UPLOAD_STATUS}"
                 }
