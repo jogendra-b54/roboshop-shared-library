@@ -2,7 +2,9 @@
 def call()
 {
    node {
-      common.lintchecks()   
+      common.lintchecks() 
+      env.ARGS ="-Dsonar.sources=."
+      common.sonarchecks()  
    }
 }
 // def lintchecks()
