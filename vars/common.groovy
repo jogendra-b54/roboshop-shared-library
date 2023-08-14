@@ -60,3 +60,26 @@ def sonarchecks()
         }    
 
 }
+
+
+def testCases(){
+    
+       stage('Test Cases') {
+        def stages = [:]
+
+        stages["Unit Testing"] = {
+            echo "Unit Testing started for ${COMPONENT}"
+            echo "Unit Testing Completed for ${COMPONENT}"
+        }
+        stages["Integration Testing"] = {
+             echo "Integration Testing started for ${COMPONENT}"
+             echo "Integration Testing Completed for ${COMPONENT}"
+        }
+        stages["Functional Testing"] = {
+             echo "Functional Testing started for ${COMPONENT}"
+             echo "Functional Testing Completed for ${COMPONENT}"
+        }
+
+        parallel(stages)
+       }
+}
