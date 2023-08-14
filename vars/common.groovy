@@ -9,6 +9,45 @@
 //     '''
 
 // }
+def lintchecks()
+{   
+    stage('Lint checks'){
+        if(env.APP_TYPE == "nodejs" ) {
+    sh '''
+             echo Installing JSLint for ${COMPONENT}
+             npm i jslint
+             node_modules/jslint/bin/jslint.js server.js || true
+             echo lint checks completed for ${COMPONENT}
+     '''
+        }
+        else if(env.APP_TYPE == "python"){
+            sh '''
+            # pip3 install pylint
+            # pip *.py
+            echo lint checks started for ${COMPONENT} using pylint
+            echo lint checks completed for ${COMPONENT}
+            '''
+        }
+        else if(env.APP_TYPE == "java") {
+            sh '''
+            echo lint checks started for ${COMPONENT} using mvn
+    
+            mvn checkstyle:check
+
+            echo lint checks completed for ${COMPONENT}
+
+            '''
+        }
+        else {
+            sh '''
+            echo lint checks started for ${COMPONENT} using AngualrJS
+               echo lint checks completed for ${COMPONENT}
+
+            '''
+        }
+    }
+
+}
 def sonarchecks()
 {   
     
