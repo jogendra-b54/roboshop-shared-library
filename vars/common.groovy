@@ -61,7 +61,8 @@ def sonarchecks()
 
 }
 
-
+// This is how we can handle scripted pipeline for parallel stages-
+// Ref: https://stackoverflow.com/questions/57485965/how-can-i-create-parallel-stages-in-jenkins-scripted-pipeline
 def testCases(){
     
        stage('Test Cases') {
@@ -83,3 +84,50 @@ def testCases(){
         parallel(stages)
        }
 }
+
+artifacts(){
+       stage('Validate Artifact Version'){
+             env.UPLOAD_STATUS=sh(returnStdout: true , script: 'curl -s -L http://${NEXUSURL}:8081/service/rest/repository/browse/${COMPONENT}/ | grep ${COMPONENT}-${TAG_NAME}.zip || true' )
+             print UPLOAD_STATUS
+        }
+                    
+        if(env.UPLOAD_STATUS == ""){
+            stage('Prepare Artifacts'){
+                    if(env.APP_TYPE == "nodejs"){
+                    sh '''
+                         echo preparing the Artifacts for ${COMPONENT}
+                         npm install
+                         zip ${COMPONENT}-${TAG_NAME}.zip node_modules server.js
+                    '''
+                }
+                else if(env.APP_TYPE == "python"){
+                    sh '''
+                            echo Preparing Artifacts for ${COMPONENT}
+                    '''
+                }
+                 else if(env.APP_TYPE == "java"){
+                    sh '''
+                            echo Preparing Artifacts for ${COMPONENT}
+                    '''
+                }
+                 else {
+                    sh '''
+                            echo Preparing Artifacts for ${COMPONENT}
+                    '''
+                }
+            }
+            stage('Upload Artifacts'){
+                 if(env.APP_TYPE == "nodejs"){
+                    sh '''
+                         echo preparing the Artifacts for ${COMPONENT}
+                         npm install
+                         zip ${COMPONENT}-${TAG_NAME}.zip node_modules server.js
+                    '''
+                }
+            }
+        }
+}         
+            
+            
+         
+          
