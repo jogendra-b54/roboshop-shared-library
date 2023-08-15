@@ -85,7 +85,7 @@ def testCases(){
        }
 }
 
-artifacts(){
+def artifacts(){
        stage('Validate Artifact Version'){
              env.UPLOAD_STATUS=sh(returnStdout: true , script: 'curl -s -L http://${NEXUSURL}:8081/service/rest/repository/browse/${COMPONENT}/ | grep ${COMPONENT}-${TAG_NAME}.zip || true' )
              print UPLOAD_STATUS
