@@ -97,22 +97,28 @@ def artifacts(){
                     sh '''
                          echo preparing the Artifacts for ${COMPONENT}
                          npm install
-                         zip ${COMPONENT}-${TAG_NAME}.zip node_modules server.js
+                         zip -r ${COMPONENT}-${TAG_NAME}.zip node_modules server.js
                     '''
                 }
                 else if(env.APP_TYPE == "python"){
                     sh '''
                             echo Preparing Artifacts for ${COMPONENT}
+                            zip -r ${COMPONENT}-${TAG_NAME}.zip *.py *.int requirements.txt
                     '''
                 }
                  else if(env.APP_TYPE == "java"){
                     sh '''
                             echo Preparing Artifacts for ${COMPONENT}
+                            mvn clean package
+                            mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar
+                            zip -r ${COMPONENT}-${TAG_NAME}.zip ${COMPONENT}.jar
                     '''
                 }
                  else {
                     sh '''
                             echo Preparing Artifacts for ${COMPONENT}
+                            cd static 
+                            zip -r  ${COMPONENT}-${TAG_NAME}.zip *
                     '''
                 }
             }
