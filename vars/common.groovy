@@ -117,7 +117,6 @@ def artifacts(){
                 }
             }
             stage('Upload Artifacts'){
-                 if(env.APP_TYPE == "nodejs"){
                    withCredentials([usernamePassword(credentialsId: 'NEXUS', passwordVariable: 'NEXUS_PSW', usernameVariable: 'NEXUS_USR')]) {
                             sh "echo uploading ${COMPONENT} Artifacts to Nexus"
                             sh "curl -f -v -u ${NEXUS_USR}:${NEXUS_PSW} --upload-file ${COMPONENT}-${TAG_NAME}.zip http://172.31.95.24:8081/repository/${COMPONENT}/${COMPONENT}-${TAG_NAME}.zip"
@@ -125,8 +124,7 @@ def artifacts(){
                    } 
                 }
             }
-        }
-}         
+        }        
             
             
          
