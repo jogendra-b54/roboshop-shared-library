@@ -87,11 +87,11 @@ def testCases(){
 
 def artifacts(){
        stage('Validate Artifact Version'){
-             env.UPLOAD_STATUS=sh(returnStdout: true , script: "curl -L -s  http://172.31.95.24:8081/service/rest/repository/browse/${COMPONENT}/ | grep ${COMPONENT}-${TAG_NAME}.zip" )
+             env.UPLOAD_STATUS=sh(returnStdout: true , script: "curl -L -s  http://172.31.95.24:8081/service/rest/repository/browse/${COMPONENT}/ | grep ${COMPONENT}-${TAG_NAME}.zip || true" )
              print UPLOAD_STATUS
         }
                     
-        if(env.UPLOAD_STATUS == "null"){
+        if(env.UPLOAD_STATUS != "null"){
             stage('Prepare Artifacts'){
                     if(env.APP_TYPE == "nodejs"){
                     sh '''
