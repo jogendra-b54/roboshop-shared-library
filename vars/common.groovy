@@ -103,7 +103,7 @@ def artifacts(){
                 else if(env.APP_TYPE == "python"){
                     sh '''
                             echo Preparing Artifacts for ${COMPONENT}
-                            zip -r ${COMPONENT}-${TAG_NAME}.zip *.py *.int requirements.txt
+                            zip -r ${COMPONENT}-${TAG_NAME}.zip *.py *.ini requirements.txt
                     '''
                 }
                  else if(env.APP_TYPE == "java"){
