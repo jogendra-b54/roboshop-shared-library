@@ -103,6 +103,10 @@ def artifacts(){
                 else if(env.APP_TYPE == "python"){
                     sh '''
                             echo Preparing Artifacts for ${COMPONENT}
+                            ls -ltr
+                            mvn clean package
+                            ls -ltr
+                            mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar
                             zip -r ${COMPONENT}-${TAG_NAME}.zip *.py *.ini requirements.txt
                     '''
                 }
