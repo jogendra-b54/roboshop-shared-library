@@ -91,7 +91,7 @@ def artifacts(){
              print UPLOAD_STATUS
         }
                     
-        if(env.UPLOAD_STATUS != "null"){
+        if(env.UPLOAD_STATUS == ""){
             stage('Prepare Artifacts'){
                     if(env.APP_TYPE == "nodejs"){
                     sh '''
