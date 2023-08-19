@@ -1,6 +1,7 @@
 def call()
 {
    node {
+      git branch: 'main', url: "https://github.com/jogendra-b54/${COMPONENT}.git"
       env.APP_TYPE="angularjs"
       common.lintchecks()
       env.ARGS="-Dsonar.sources=."

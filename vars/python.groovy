@@ -2,7 +2,7 @@
 def call()
 {
    node {
-      git branch: 'main', url: "https://github.com/b54-clouddevops/${COMPONENT}.git"
+      git branch: 'main', url: "https://github.com/jogendra-b54/${COMPONENT}.git"
       env.APP_TYPE="python"
       common.lintchecks() 
       env.ARGS="-Dsonar.sources=."
