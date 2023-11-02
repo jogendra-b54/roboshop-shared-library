@@ -1,5 +1,10 @@
 def call() {
-
+    properties([
+            parameters([
+                choice(choices: 'dev\nprod' ,description: "select your environment" ,name: "ENV"),
+                choice(choices: 'apply\ndestroy' ,description: "Choose an action" ,name: "ACTION")
+            ]),
+    ])
     node {
         ansiColor('xterm') {
           git branch: 'main', url: 'https://github.com/jogendra-b54/${REPONAME}.git' 
