@@ -1,6 +1,6 @@
 def call()
 {
-   node {
+   node('WS') {
       git branch: 'main', url: "https://github.com/jogendra-b54/${COMPONENT}.git"
       env.APP_TYPE="java"
       common.lintchecks()

@@ -6,7 +6,7 @@ def call() {
                 string(choices: 'APP_VERSION' ,description: "Enter your backend version" ,name: "APP_VERSION")
             ]),
     ])
-    node {
+    node('WS') {
         ansiColor('xterm') {
           git branch: 'main', url: "https://github.com/jogendra-b54/${REPONAME}.git"
 
