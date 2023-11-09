@@ -5,7 +5,7 @@ def call() {
                 choice(choices: 'apply\ndestroy' ,description: "Choose an action" ,name: "ACTION")
             ]),
     ])
-    node() {
+    node('WS') {
         ansiColor('xterm') {
           git branch: 'main', url: "https://github.com/jogendra-b54/${REPONAME}.git"
 
