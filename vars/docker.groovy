@@ -22,6 +22,7 @@ def  call(){
                     sh '''
                             echo Preparing Artifacts for ${COMPONENT}
                             mvn clean package
+                            mv target/shipping-1.0.jar shipping.jar
                             ls -ltr
                     '''
                 }
