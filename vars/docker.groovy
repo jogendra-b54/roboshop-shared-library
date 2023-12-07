@@ -1,5 +1,5 @@
 def  call(){
-    node {
+    node('WS') {
         sh "rm -rf *"
         git branch: 'main', url: "https://github.com/jogendra-b54/${COMPONENT}.git"
         env.APP_TYPE="nodejs"
